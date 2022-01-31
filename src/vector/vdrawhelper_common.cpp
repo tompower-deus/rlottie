@@ -32,14 +32,14 @@ static void color_Source(uint32_t *dest, int length, uint32_t color,
 {
     int ialpha, i;
 
-    if (alpha == 255) {
-        memfill32(dest, color, length);
-    } else {
+//    if (alpha == 255) {
+//        memfill32(dest, color, length);
+//    } else {
         ialpha = 255 - alpha;
         color = BYTE_MUL(color, alpha);
         for (i = 0; i < length; ++i)
             dest[i] = color + BYTE_MUL(dest[i], ialpha);
-    }
+//    }
 }
 
 /*

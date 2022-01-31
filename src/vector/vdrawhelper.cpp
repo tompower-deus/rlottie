@@ -304,10 +304,10 @@ void fetch_linear_gradient(uint32_t *buffer, const Operator *op,
 
     const uint32_t *end = buffer + length;
     if (affine) {
-        if (inc > float(-1e-5) && inc < float(1e-5)) {
-            memfill32(buffer, gradientPixelFixed(gradient, int(t * FIXPT_SIZE)),
-                      length);
-        } else {
+//        if (inc > float(-1e-5) && inc < float(1e-5)) {
+//            memfill32(buffer, gradientPixelFixed(gradient, int(t * FIXPT_SIZE)),
+//                      length);
+//        } else {
             if (t + inc * length < float(INT_MAX >> (FIXPT_BITS + 1)) &&
                 t + inc * length > float(INT_MIN >> (FIXPT_BITS + 1))) {
                 // we can use fixed point math
@@ -327,7 +327,7 @@ void fetch_linear_gradient(uint32_t *buffer, const Operator *op,
                     ++buffer;
                 }
             }
-        }
+//        }
     } else {  // fall back to float math here as well
         float rw = data->m23 * (y + float(0.5)) + data->m13 * (x + float(0.5)) +
                    data->m33;
@@ -390,7 +390,7 @@ void fetch_radial_gradient(uint32_t *buffer, const Operator *op,
 {
     // avoid division by zero
     if (vIsZero(op->radial.a)) {
-        memfill32(buffer, 0, length);
+//        memfill32(buffer, 0, length);
         return;
     }
 
